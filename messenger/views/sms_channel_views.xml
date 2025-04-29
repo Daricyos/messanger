@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Расширяем форму канала -->
+    <record id="view_discuss_channel_form_inherit" model="ir.ui.view">
+    <field name="name">discuss.channel.form.inherit</field>
+    <field name="model">discuss.channel</field>
+    <field name="inherit_id" ref="mail.view_discuss_channel_tree"/> <!-- Исправленный XML ID -->
+    <field name="arch" type="xml">
+        <!-- Изменяем домен для выбора контактов -->
+        <xpath expr="//field[@name='channel_partner_ids']" position="attributes">
+            <attribute name="domain">[('is_company', '=', False)]</attribute>
+        </xpath>
+    </field>
+</record>
+
+    <!-- Добавляем кнопку для создания Direct Messages -->
+    <record id="view_discuss_channel_tree_inherit" model="ir.ui.view">
+        <field name="name">discuss.channel.tree.inherit</field>
+        <field name="model">discuss.channel</field>
+        <field name="inherit_id" ref="mail.view_discuss_channel_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <button name="create_direct_message" string="Create Direct Message"
+                        type="object" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,26 @@
+<odoo>
+    <record id="messenger_res_partner_view" model="ir.ui.view">
+        <field name="name">messenger.res.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="twilio_chat_id"/>
+            </xpath>
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_res_partner_kanban_inherit" model="ir.ui.view">
+        <field name="name">stock.res.partner.kanban.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="attributes">
+                <attribute name="js_class">custom_kanban</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
